@@ -1,3 +1,5 @@
+
+
 class Engine {
     
     constructor() {
@@ -80,10 +82,13 @@ class Engine {
                 this.addMouseoverEvent()
             })
         }) 
-        // this.scoreboard = new Scoreboard(this.score);
+        // this.scoreboard = new Scoreboard(this.score)
         this.buildWord = this.buildWord.bind(this); 
         this.checkWord = this.checkWord.bind(this);
         this.addMouseoverEvent = this.addMouseoverEvent.bind(this);
+        this.wordList = wordList
+        console.log(this.wordList)
+        
     }
         
             
@@ -108,13 +113,24 @@ class Engine {
     checkWord(){
     //return boolean of whether str is a word  or not 
     // check if its a word
-   
-    this.currentWord = ''; 
     
-    document.querySelectorAll('.dice').forEach( (ele) => {
+    this.diceStore.forEach( ele => {
        
         ele.removeEventListener('mouseover', this.buildWord)
     })
+
+    const checkedWord = this.currentWord.toLowerCase();
+
+    this.currentWord = '';
+
+    if (wordList[checkedWord]) {
+        console.log('checked word:  ', checkedWord, 'is a word?  TRUE')
+        return true;
+    } else {
+        console.log('check word:  ', checkedWord, 'is a word? FALSE')
+        return false
+    }
+
     }
     buildWord(event){
     // going to add the letter the user has clicked to the empty string of currentword
