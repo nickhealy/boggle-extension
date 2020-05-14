@@ -17,14 +17,13 @@ li {
     height: 250px;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
-    grid-gap: 3px;
+    grid-gap: 8px;
     margin-right: 50px; 
 }
 
 #container {
     width: 800px;
-    padding-top: 25px; 
-    padding-left: 25px; 
+    padding: 25px; 
     display: flex; 
     justify-content: center;
     align-items: flex-start;

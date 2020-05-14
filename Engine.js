@@ -84,6 +84,7 @@ class Engine {
         this.addMouseoverEvent = this.addMouseoverEvent.bind(this);
         this.gameStart = this.gameStart.bind(this);
         this.tick = this.tick.bind(this);
+       
         // this.wordList = wordList
         //iterate diceStore array
         this.diceStore.forEach( ele => {
@@ -123,7 +124,7 @@ class Engine {
     //return boolean of whether str is a word  or not 
     // check if its a word
     const checkedWord = this.currentWord.toLowerCase();
-
+  
     this.addToPreviousList();
     this.addScore(checkedWord.length)
     this.updateScore(); 

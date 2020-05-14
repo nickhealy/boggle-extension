@@ -2,9 +2,13 @@
     "name" : "Boggle Extension",
     "version" : "1.0",
     "description" : "Waste time with you favorite word game",
+    "permissions": ["activeTab", "declarativeContent", "storage"],
     "background": {
-        "scripts":["background.js", "typo.js"],
+        "scripts":["background.js"],
         "persistent": false
+    },
+    "page_action" : {
+        "default_popup": "pop-up.html"
     },
     "manifest_version" : 2
 }
