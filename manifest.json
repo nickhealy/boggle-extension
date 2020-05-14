@@ -1,0 +1,10 @@
+{
+    "name" : "Boggle Extension",
+    "version" : "1.0",
+    "description" : "Waste time with you favorite word game",
+    "background": {
+        "scripts":["background.js", "typo.js"],
+        "persistent": false
+    },
+    "manifest_version" : 2
+}
