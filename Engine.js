@@ -67,27 +67,31 @@ class Engine {
                 currentLetter:''
             }
             }
-        this.currentword = ''//user's current  word
+        this.currentWord = ''//user's current  word
         this.gameon = false;
         this.score = 0;
-        this.diceStore = document.querySelectorAll('.dice')
+        this.diceStore = document.querySelectorAll('.dice');
         //iterate diceStore array
         this.diceStore.forEach( ele => {
             //add event listner to each element, listen for  click
             ele.addEventListener('mousedown', (event) => {
                 
                 this.buildWord(event)
-                this.dragEvent()
+                this.addMouseoverEvent()
             })
         }) 
         // this.scoreboard = new Scoreboard(this.score);
-        }
+        this.buildWord = this.buildWord.bind(this); 
+        this.checkWord = this.checkWord.bind(this);
+        this.addMouseoverEvent = this.addMouseoverEvent.bind(this);
+    }
+        
             
-    dragEvent(){
+    addMouseoverEvent(){
         //create 2 event listeners on every dice
         
         this.diceStore.forEach( ele =>{
-            ele.addEventListener('mouseover', (event) => this.buildWord(event))
+            ele.addEventListener('mouseover', this.buildWord)
             ele.addEventListener('mouseup', this.checkWord)
         })
     }
@@ -103,10 +107,13 @@ class Engine {
     }
     checkWord(){
     //return boolean of whether str is a word  or not 
+    // check if its a word
+   
+    this.currentWord = ''; 
     
     document.querySelectorAll('.dice').forEach( (ele) => {
-        console.log(this.currentWord)
-        ele.removeEventListener('mouseover', this.checkWord )
+       
+        ele.removeEventListener('mouseover', this.buildWord)
     })
     }
     buildWord(event){
@@ -115,9 +122,9 @@ class Engine {
     // will take the inner text  of targe of event and add that to the word currently stored stored in current word to str stored in this.current currentword
         
         event.preventDefault()
-        this.currentword += event.target.innerText
+        this.currentWord += event.target.innerText
         
-        console.log(this.currentword)
+        console.log('this is the letter that is being processed:    ', event.target.innerText)
     }
     addScore(num){
         //update score property
