@@ -1,0 +1,17 @@
+#board {
+    display: grid; 
+    width: 250px; 
+    height: 250px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-gap: 3px;
+}
+
+.dice {
+    background-color: lightblue;
+    height: 100%;
+    width: 100%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
