@@ -77,7 +77,8 @@ class Engine {
         this.timer = new Timer(this.timeRemaining)
         this.timerVar;
         this.diceStore = document.querySelectorAll('.dice');
-        this.scoreboard = new Scoreboard(this.score, this.previousWords)
+        this.scoreboard = new Scoreboard(this.score, this.previousWords);
+        
         this.addToPreviousList = this.addToPreviousList.bind(this);
         this.buildWord = this.buildWord.bind(this); 
         this.checkWord = this.checkWord.bind(this);
@@ -85,7 +86,7 @@ class Engine {
         this.gameStart = this.gameStart.bind(this);
         this.tick = this.tick.bind(this);
        
-        // this.wordList = wordList
+        this.wordList = wordList
         //iterate diceStore array
         this.diceStore.forEach( ele => {
             //add event listner to each element, listen for  click
@@ -124,23 +125,25 @@ class Engine {
     //return boolean of whether str is a word  or not 
     // check if its a word
     const checkedWord = this.currentWord.toLowerCase();
-  
-    this.addToPreviousList();
-    this.addScore(checkedWord.length)
-    this.updateScore(); 
 
     this.diceStore.forEach( ele => {
        
         ele.removeEventListener('mouseover', this.buildWord)
         ele.classList.remove('selected')
     })
-    // dictionary.check(this.currentWord)
-    this.currentWord = '';
-   
 
+    this.currentWord = '';
+
+    if (!this.wordList[checkedWord]) {
+        return
     }
-    addToPreviousList() {
-        this.previousWords = [...this.previousWords, this.currentWord]
+  
+    this.addToPreviousList(checkedWord.toUpperCase());
+    this.addScore(checkedWord.length)
+    this.updateScore();
+    }
+    addToPreviousList(newWord) {
+        this.previousWords = [...this.previousWords, newWord]
         console.log('previousWords:     ', this.previousWords)
     }
     buildWord(event){
@@ -170,6 +173,7 @@ class Engine {
     endGame(){
         this.gameon = false; 
         clearInterval(this.timerVar);
+        alert('GAME OVER!!! GET BACK TO WORK!!!')
     }
     handleTimer(){ 
         this.gameon = !this.gameon; 
@@ -207,7 +211,7 @@ class Engine {
 
 
 const testEngine = new Engine();
-testEngine.populateDice();
+// testEngine.populateDice();
 // console.log(testEngine.dice);
 
 
